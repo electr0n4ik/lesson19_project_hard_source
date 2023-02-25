@@ -7,6 +7,7 @@ from views.directors import director_ns
 from views.genres import genre_ns
 from views.movies import movie_ns
 from views.users import user_ns
+from dao.model.user import User
 
 def create_app(config_object):
     app = Flask(__name__)
@@ -26,6 +27,11 @@ def register_extensions(app):
 
 app = create_app(Config())
 app.debug = True
+db.create_all()
+u1 = User(id=1, username='SkyUser', password='e5a9a38d52002ca74792b474d152bede', role='admin')
+
+with db.session.begin():
+    db.session.add(u1)
 
 if __name__ == '__main__':
     app.run(host="localhost", port=10001, debug=True)

@@ -1,6 +1,6 @@
 from flask_restx import Resource, Namespace
-from flask import request
-from implemented import auth_service
+from flask import request, abort
+from implemented import auth_service, user_service
 
 auth_ns = Namespace('auth')
 
@@ -12,8 +12,17 @@ class AuthView(Resource):
         username = data.get("username", None)
         password = data.get("password", None)
 
-        if None in [username, password]:
-            return "", 400
+        # if None in [username, password]:
+        #     abort(400)
+        #
+        # user = user_service.get_by_username(username)
+        #
+        # if user is None:
+        #     return {"error": "Неверные учётные данные"}, 401
+        # password_hash = user_service.get_hash(password)
+        #
+        # if password_hash != user.password:
+        #     return {"error": "Неверные учётные данные"}, 401
 
         tokens = auth_service.generate_tokens(username, password)
 
@@ -24,7 +33,7 @@ class AuthView(Resource):
         refresh_token = data.get("refresh_token")
 
         if not refresh_token:
-            return "", 400
+            abort(400)
 
         tokens = auth_service.approve_refresh_token(refresh_token)
         return tokens, 201
