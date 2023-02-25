@@ -27,11 +27,7 @@ def register_extensions(app):
 
 app = create_app(Config())
 app.debug = True
-db.create_all()
-u1 = User(id=1, username='SkyUser', password='e5a9a38d52002ca74792b474d152bede', role='admin')
 
-with db.session.begin():
-    db.session.add(u1)
 
 if __name__ == '__main__':
     app.run(host="localhost", port=10001, debug=True)

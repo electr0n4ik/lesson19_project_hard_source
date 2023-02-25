@@ -17,7 +17,6 @@ class UsersView(Resource):
         res = UserSchema(many=True).dump(all_users)
         return res, 200
 
-    @admin_required
     def post(self):
         req_json = request.json
         user = user_service.create(req_json)
