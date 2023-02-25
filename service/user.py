@@ -17,9 +17,12 @@ class UserService:
     def get_one(self, uid):
         return self.dao.get_one(uid)
 
-    def get_all(self, filters):
+    def get_all(self):
         users = self.dao.get_all()
         return users
+
+    def get_by_username(self, uid):
+        return self.dao.get_by_username(uid)
 
     def create(self, user_d):
         return self.dao.create(user_d)

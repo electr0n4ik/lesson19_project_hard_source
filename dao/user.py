@@ -9,17 +9,10 @@ class UserDAO:
         return self.session.query(User).get(bid)
 
     def get_all(self):
-        # А еще можно сделать так, вместо всех методов get_by_*
-        # t = self.session.query(User)
-        # if "director_id" in filters:
-        #     t = t.filter(User.director_id == filters.get("director_id"))
-        # if "genre_id" in filters:
-        #     t = t.filter(User.genre_id == filters.get("genre_id"))
-        # if "year" in filters:
-        #     t = t.filter(User.year == filters.get("year"))
-        # return t.all()
         return self.session.query(User).all()
 
+    def get_by_username(self, username):
+        return self.session.query(User).filter(User.username == username).first()
 
     def create(self, user_d):
         ent = User(**user_d)
