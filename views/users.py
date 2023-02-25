@@ -12,7 +12,7 @@ class UsersView(Resource):
     def get(self):
         user = request.args.get("user_id")
 
-        all_users = user_service.get_all()
+        all_users = user_service.get_all(user)
         res = UserSchema(many=True).dump(all_users)
         return res, 200
 
