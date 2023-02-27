@@ -1,6 +1,6 @@
 from flask import request
 from flask_restx import Resource, Namespace
-from service.auth_required import admin_required, auth_required
+from decorators import admin_required, auth_required
 from dao.model.user import UserSchema
 from implemented import user_service
 

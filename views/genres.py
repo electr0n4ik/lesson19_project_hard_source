@@ -2,7 +2,7 @@ from flask_restx import Resource, Namespace
 from flask import request
 from dao.model.genre import GenreSchema
 from implemented import genre_service
-from service.auth_required import admin_required, auth_required
+from decorators import admin_required, auth_required
 
 genre_ns = Namespace('genres')
 

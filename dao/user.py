@@ -1,5 +1,5 @@
-from dao.model.user import User
 
+from dao.model.user import User
 
 class UserDAO:
     def __init__(self, session):
